@@ -45,5 +45,47 @@ cd carla-habeslab/python
 ./run_client.sh
 ```
 
+## Step 3: Logs and Output
+
+When you run `run_client.sh`:
+
+1. The Python virtual environment is created and dependencies are installed.  
+2. `CAD_FL.py` runs:
+   - Starts autonomous driving in CARLA.  
+   - Runs YOLOv8 detection for both COCO classes** (`yolov8m.pt`) and **custom pole class** (`best.pt`).  
+   - Saves camera frames and detection labels.  
+3. `3.fedFL.py` runs:
+   - Aggregates local models from vehicles to update the global model.  
+   - Runs in the background continuously.
+
+**Saved logs**:
+```text
+python/logs/vehicle_<id>/
+├── images/ # Camera frames captured by the vehicle
+└── labels/ # YOLO labels (COCO + custom) for each frame
+```
+
+- Frames and labels are saved every **10 frames** by default (configurable in `CAD_FL.py`).  
+
+## YOLOv8 Models
+
+This framework uses two YOLOv8 models for object detection in CARLA:
+
+| Model | Purpose | Location |
+|-------|---------|---------|
+| `yolov8m.pt` | Pretrained on COCO dataset (80 classes) for general object detection | `python/` |
+| `best.pt` | Custom-trained local model for detecting `pole` | `python/pole/weights/best.pt` |
+
+Notes:
+
+- `CAD_FL.py` loads both models per vehicle:
+  - `yolov8m.pt` → general object detection
+  - `best.pt` → custom detection for your pole class
+- Detection results are:
+  - Visualized in CARLA  
+  - Saved in logs (`python/logs/vehicle_<id>/images` and `/labels`)  
+- The federated learning aggregation updates the global model based on these local detections (`3.fedFL.py`).
+
+
 
 ## Step 3: Run Object Detection + Federated Learning
