@@ -11,7 +11,7 @@ This repo contains:
 - Federated Learning aggregation (`3.fedFL.py`) to update the global model.  
 
 ## Repository Structure
-
+```text
 carla-habeslab/
 ├── README.md                # This file
 ├── .gitignore               # Git ignore rules
@@ -26,6 +26,8 @@ carla-habeslab/
 │       └── weights/
 │           └── best.pt      # Locally trained YOLO model for `pole` class
 │   └── yolov8m.pt           # Default YOLOv8 model for 8 COCO classes
+
+```
                
 ## Step 1: Start CARLA Simulator
 
