@@ -10,3 +10,24 @@ This repo contains:
   - `global_model.pt` → custom trained global model (`pole` class)  
 - Federated Learning aggregation (`3.fedFL.py`) to update the global model.  
 
+## Repository Structure
+carla-habeslab/
+├── README.md
+├── .gitignore
+├── docker/
+│ └── run_carla.sh # Script to start CARLA in Docker
+└── python/
+├── CAD_FL.py # Main script (object detection + CARLA control)
+├── 3.fedFL.py # Federated Learning aggregation script
+├── run_client.sh # Runs both CAD_FL.py + 3.fedFL.py
+├── pole/ # Folder containing trained local models and info
+│ └── yolov8.m # Example local model file
+└── requirements.txt # Python dependencies
+
+## Step 1: Start CARLA Simulator
+
+Open Terminal 1 and run:
+
+```bash
+cd carla-habeslab/docker
+./run_carla.sh
