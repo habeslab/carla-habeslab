@@ -37,3 +37,13 @@ Open Terminal 1 and run:
 cd carla-habeslab/docker
 ./run_carla.sh
 ```
+## Step 2: Run Object Detection + Federated Learning
+
+Open Terminal 2 and run:
+```bash
+cd carla-habeslab/python
+./run_client.sh
+```
+
+
+## Step 3: Run Object Detection + Federated Learning
