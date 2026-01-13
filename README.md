@@ -25,7 +25,7 @@ carla-habeslab/
 │   └── pole/                # Folder containing trained local models
 │       └── weights/
 │           └── best.pt      # Locally trained YOLO model for `pole` class
-│   └── yolov8m.pt           # Default YOLOv8 model for 8 COCO classes
+│   └── yolov8m.pt           # Default YOLOv8 model for 80 COCO classes
 
 ```
                
@@ -52,7 +52,7 @@ When you run `run_client.sh`:
 1. The Python virtual environment is created and dependencies are installed.  
 2. `CAD_FL.py` runs:
    - Starts autonomous driving in CARLA.  
-   - Runs YOLOv8 detection for both COCO classes** (`yolov8m.pt`) and custom pole class (`best.pt`).  
+   - Runs YOLOv8 detection for both COCO classes (`yolov8m.pt`) and custom pole class (`best.pt`).  
    - Saves camera frames and detection labels.  
 3. `3.fedFL.py` runs:
    - Aggregates local models from vehicles to update the global model.  
