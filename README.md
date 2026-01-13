@@ -26,6 +26,8 @@ carla-habeslab/
 │       └── weights/
 │           └── best.pt      # Locally trained YOLO model for `pole` class
 │   └── yolov8m.pt           # Default YOLOv8 model for 80 COCO classes
+│   └── coco.names           # COCO class names (used with yolov8m.pt)
+│   └── custom.names         # Custom class name (used with local model)
 
 ```
                
@@ -75,6 +77,19 @@ This framework uses two YOLOv8 models for object detection in CARLA:
 |-------|---------|---------|
 | `yolov8m.pt` | Pretrained on COCO dataset (80 classes) for general object detection | `python/` |
 | `best.pt` | Custom-trained local model for detecting `pole` | `python/pole/weights/best.pt` |
+
+This project uses explicit class name files during detection:
+
+- `coco.names`  
+  - Contains the 80 COCO class labels  
+  - Used by `yolov8m.pt` for general object detection  
+
+- `custom.names`  
+  - Contains custom class labels (e.g., `pole`)  
+  - Used by the federated/global YOLO model (`global_model.pt`)  
+
+These files are loaded in `CAD_FL.py` to correctly map predicted class IDs to human readable labels during real-time detection and logging.
+
 
 ## Step 5: Notes & Configuration
 
