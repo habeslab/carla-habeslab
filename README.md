@@ -112,7 +112,7 @@ This framework uses two YOLOv8 models for object detection in CARLA:
 - **No Images Saved**: Check `ObjectDetection.SAVE_INTERVAL` and camera attachment to vehicles  
 - **Federated Learning Not Updating**: Verify `max_images_per_round` is met for all vehicles  
 
-## Step 7: References & Credits
+## References & Credits
 
 - [CARLA Simulator](https://carla.org/) – Open-source autonomous driving simulator  
 - [YOLOv8 by Ultralytics](https://github.com/ultralytics/ultralytics) – Object detection framework   
