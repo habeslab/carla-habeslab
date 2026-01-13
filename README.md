@@ -36,3 +36,4 @@ Open Terminal 1 and run:
 ```bash
 cd carla-habeslab/docker
 ./run_carla.sh
+```
