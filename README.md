@@ -115,6 +115,5 @@ This framework uses two YOLOv8 models for object detection in CARLA:
 ## Step 7: References & Credits
 
 - [CARLA Simulator](https://carla.org/) – Open-source autonomous driving simulator  
-- [YOLOv8 by Ultralytics](https://github.com/ultralytics/ultralytics) – Object detection framework  
-- FedAvg / FedProx concepts – Federated Learning aggregation  
+- [YOLOv8 by Ultralytics](https://github.com/ultralytics/ultralytics) – Object detection framework   
 - This repository integrates YOLOv8 detection into CARLA’s `automatic_control.py` example, enabling real-time detection with federated learning updates.
