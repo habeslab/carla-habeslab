@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Activate your existing Python environment
-source ~/Documents/PythonAPI/aiman/bin/activate
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 
 # Run the first script
 echo "Running CAD_FL.py..."
