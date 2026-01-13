@@ -76,13 +76,45 @@ This framework uses two YOLOv8 models for object detection in CARLA:
 | `yolov8m.pt` | Pretrained on COCO dataset (80 classes) for general object detection | `python/` |
 | `best.pt` | Custom-trained local model for detecting `pole` | `python/pole/weights/best.pt` |
 
-Notes:
+## Step 5: Notes & Configuration
 
-- `CAD_FL.py` loads both models per vehicle:
-  - `yolov8m.pt` → general object detection
-  - `best.pt` → custom detection for your pole class
-- Detection results are:
-  - Visualized in CARLA  
-  - Saved in logs (`python/logs/vehicle_<id>/images` and `/labels`)  
-- The federated learning aggregation updates the global model based on these local detections (`3.fedFL.py`).
+- **Camera & Frame Settings**:  
+  - Resolution: `640x480`  
+  - Field of View (FOV): `90`  
+  - Frames saved every 10 frames (configurable via `ObjectDetection.SAVE_INTERVAL` in `CAD_FL.py`)  
 
+- **Federated Learning Configuration** (`3.fedFL.py`):
+  - `vehicles` → List of vehicle IDs used in federated learning
+  - `base_model_path` → Path to local YOLO model (`best.pt`)
+  - `global_model_path` → Path to save aggregated global model
+  - `local_epochs` → Number of epochs for local training per vehicle
+  - `max_images_per_round` → Minimum images per vehicle before aggregation
+  - `mu`, `head_alpha`, `clip_max` → FedProx aggregation parameters
+
+- **Custom Classes**:
+  - COCO classes for general detection (`yolov8m.pt`)  
+  - Pole class for local/global detection (`best.pt` / `global_model.pt`)  
+
+- **Logs and Outputs**:
+  - All images and labels are saved in `python/logs/vehicle_<id>/images` and `/labels`  
+  - Global model is updated in `python/global/global_model.pt` after each aggregation round  
+
+- **Best Practices**:
+  - Start CARLA simulator first (Step 1)  
+  - Ensure `run_client.sh` is executed in a Python environment with all dependencies installed  
+  - Avoid running multiple `CAD_FL.py` instances simultaneously unless needed  
+  - Check disk space as images accumulate over time  
+
+## Step 6: Troubleshooting
+
+- **CARLA Not Starting**: Make sure Docker is running and ports are free  
+- **YOLO Model Errors**: Ensure `yolov8m.pt` and `best.pt` exist in their correct paths  
+- **No Images Saved**: Check `ObjectDetection.SAVE_INTERVAL` and camera attachment to vehicles  
+- **Federated Learning Not Updating**: Verify `max_images_per_round` is met for all vehicles  
+
+## Step 7: References & Credits
+
+- [CARLA Simulator](https://carla.org/) – Open-source autonomous driving simulator  
+- [YOLOv8 by Ultralytics](https://github.com/ultralytics/ultralytics) – Object detection framework  
+- FedAvg / FedProx concepts – Federated Learning aggregation  
+- This repository integrates YOLOv8 detection into CARLA’s `automatic_control.py` example, enabling real-time detection with federated learning updates.
