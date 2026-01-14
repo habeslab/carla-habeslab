@@ -120,7 +120,7 @@ These files are loaded in `CAD_FL.py` to correctly map predicted class IDs to hu
   - Avoid running multiple `CAD_FL.py` instances simultaneously unless needed  
   - Check disk space as images accumulate over time  
 
-## Step 6: Troubleshooting
+## Troubleshooting
 
 - **CARLA Not Starting**: Make sure Docker is running and ports are free  
 - **YOLO Model Errors**: Ensure `yolov8m.pt` and `best.pt` exist in their correct paths  
